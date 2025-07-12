@@ -207,4 +207,13 @@ i=1, j=0
 i=2, j=0
 */
 
+// 10. Nullish Coalescing Operator (??) in JavaScript
+
+/* The nullish coalescing operator (??) is a logical operator that returns its 
+right-hand side operand when its left-hand side operand is null or undefined, 
+otherwise returns its left-hand side operand.*/
+let value1 = null;
+let value2 = "Default Value";
+console.log(value1 ?? value2); // Output: "Default Value"
+console.log(undefined ?? "fallback"); // Output: "fallback"
 

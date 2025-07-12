@@ -234,3 +234,146 @@ i=1, j=0
 i=2, j=0
 */
 ```
+
+# JavaScript String
+
+## 10. String Datatype
+
+```js
+// The string is a primitive data type in javascript.
+// Strings in Javascript can be created by two methods
+/* 
+as primitives from string literals
+as object using string() constructor
+*/
+
+//Creating strings as primitives:
+const str1 = "String within double ticks";
+const str2 = "String within single ticks";
+const str3 = `String within backticks`;
+console.log(str1, str2, str3);
+// Note: The string created using backticks is known as template literal.
+
+// Creating strings as an object
+/*
+Strings in javascript can be created by calling the String() constructor with the 
+string as the parameter. The String() constructor is called using the new keyword and 
+the value is assigned to a variable or constructor.
+*/
+const str4 = new String(
+	"This string object is created by calling the constructor"
+);
+console.log(str4);
+```
+
+## 11. By using charAt() method
+
+```js
+//The charAt() method returns a new string consisting of the single string of that index base
+const str = "JavaScript is a Dynamic-based programming language";
+console.log(str.charAt(0)); //output: J
+console.log(str.charAt(4)); //output: S
+```
+
+## 12. By using Bracket Notation
+
+```js
+const str5 = "JavaScript is a JIT programming language";
+console.log(str5[16]); //output: J
+console.log(str5[5]); //output: c
+```
+
+## 13. String.fromCharCode()
+
+```js
+/*
+String.fromCharCode()  is a static method that creates a string from 
+a sequence of Unicode code points (UTF-16 code units). ASCI CODE
+*/
+
+// Single character
+console.log(String.fromCharCode(65)); // "A"
+console.log(String.fromCharCode(9731)); // "☃" (snowman symbol)
+// Character that requires surrogate pair (code point 0x1F600 for 😀)
+const smileyFace = String.fromCharCode(0xd83d, 0xde00);
+console.log(smileyFace); // "😀"
+// Basic Multilingual Plane characters (same as fromCharCode)
+// Writing modern JavaScript (ES6+)
+console.log(String.fromCodePoint(65)); // "A"
+console.log(String.fromCodePoint(0x12ffff));
+```
+
+## 14. JavaScript String Methods
+
+This section covers important JavaScript **String Methods** with their usage and examples.
+
+---
+
+## 📚 Common String Methods Overview
+
+```js
+charAt()       => Finds the character present at a particular index in the string.
+concat()       => Concatenates the string arguments.
+indexOf()      => Returns the index of the first occurrence of the passed value.
+lastIndexOf()  => Returns the index of the last occurrence of the passed value.
+toLowerCase()  => Converts all the characters of the string into lowercase letters.
+toUpperCase()  => Converts all the characters of the string into uppercase letters.
+split()        => Divides the given string into an ordered list of substrings.
+trim()         => Removes additional spaces around the string.
+toString()     => Returns a string object as a string.
+substring()    => Extracts the characters between two indices of a string and returns a substring.
+slice()        => Extracts a section of a string and returns it as a new string, without modifying the original string.
+
+let string1 = "Javascript is a programming language";
+
+// Find the character at index 2
+console.log(string1.charAt(2)); // Output: v
+
+// Concatenate additional string to the original
+console.log(string1.concat(", ", "as well as one of the most used language."));
+// Output: Javascript is a programming language, as well as one of the most used language.
+
+
+// Get the first index of character 's'
+console.log(string1.indexOf("s")); // Output: 4
+
+// Get the last index of character 'a'
+console.log(string1.lastIndexOf("a")); // Output: 12
+
+// Convert the string to lowercase
+let newStr1 = string1.toLowerCase();
+console.log(newStr1);// Output: javascript is a programming language
+
+// Convert the string to uppercase
+let newStr2 = string1.toUpperCase();
+console.log(newStr2);// Output: JAVASCRIPT IS A PROGRAMMING LANGUAGE
+
+// Split the string into an array by spaces
+console.log(string1.split(" "));// Output: [ 'Javascript', 'is', 'a', 'programming', 'language' ]
+
+// Split the string into only 2 parts
+console.log(string1.split(" ", 2));// Output: [ 'Javascript', 'is' ]
+
+// Remove extra whitespace from both ends
+let str11 = " Javascript is a programming language   ";
+console.log(str11.trim()); // Output: 'Javascript is a programming language'
+
+// Convert String object to primitive string
+let newStr = new String("Javascript");
+console.log(newStr.toString());// Output: Javascript
+
+// Extract substring starting from index 3
+let str33 = "JavascriptD";
+console.log(str33.substring(3)); // Output: ascriptD
+
+// Extract substring between index 3 and 7
+console.log(str33.substring(3, 7)); // Output: ascr
+
+// Slice string from index 3 to end
+let str44 = "Language_Check";
+console.log(str44.slice(3)); // Output: guage_Check
+
+// Slice string from index 4 to 9
+console.log(str44.slice(4, 10)); // Output: uage_C
+
+```
