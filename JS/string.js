@@ -77,7 +77,7 @@ console.log(string1.concat(", ", "as well as one of the most used language."));
 //output: Javascript is a programming language, as well as one of the most used language
 
 console.log(string1.indexOf("s")); //output: 4
-console.log(string1.lastIndexOf("a")); //output: 12
+console.log(string1.lastIndexOf("a")); //output: 33
 
 let newStr1 = string1.toLowerCase();
 console.log(newStr1);

@@ -338,7 +338,7 @@ console.log(string1.concat(", ", "as well as one of the most used language."));
 console.log(string1.indexOf("s")); // Output: 4
 
 // Get the last index of character 'a'
-console.log(string1.lastIndexOf("a")); // Output: 12
+console.log(string1.lastIndexOf("a")); // Output: 33
 
 // Convert the string to lowercase
 let newStr1 = string1.toLowerCase();
