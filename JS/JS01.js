@@ -121,7 +121,7 @@ function helloWorld() {
 }
 helloWorld();
 
-// Example 4 CLosure:- 
+// Example 4 CLosure:-
 
 //Due to Closure it will print 6 for 5 time..
 function x() {
@@ -136,7 +136,7 @@ function x() {
 }
 // x();
 
-//Closure Example 5: 
+//Closure Example 5:
 // Without using let we solve above problem by using closure
 function xee() {
 	for (var i = 1; i <= 5; i++) {
@@ -156,6 +156,3 @@ xee();
 4
 5
 */
-
-
-
