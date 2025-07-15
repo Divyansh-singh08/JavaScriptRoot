@@ -49,7 +49,7 @@ A();
 // 3. What is Hosting in JS ?
 /*
 It is a phenomena in JS by which we can access variable and function even before initialization,
-and we don't get error[ we get undefine] 
+and we don't get error[ we get undefine mostly in case of variable] 
 */
 // Example of hosting
 greet(); // hosting happen in function
