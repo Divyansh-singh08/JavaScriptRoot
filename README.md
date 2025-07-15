@@ -742,3 +742,44 @@ Issue: Closures can make stack traces harder to read and debug.
 Issue: Excessive use of closures can make code harder to understand and test.
 */
 ```
+
+## Garbage Collection in JavaScript
+
+```js
+/*
+Garbage collection (GC) is JavaScript's automatic memory management system that frees up memory by reclaiming space occupied by objects that are no longer needed by the program.
+
+JavaScript uses a mark-and-sweep algorithm for garbage collection
+
+1> Mark: The GC marks all objects that are still reachable from the root (global variables, currently executing functions, etc.)
+2> Sweep: It then sweeps through memory and deallocates memory for unmarked objects
+*/
+// Example 1: Basic Garbage Collection
+function createObject() {
+	let obj = { data: "temporary" };
+	// obj is eligible for GC after function completes
+}
+createObject();
+// Explanation: The obj is automatically garbage collected after createObject() finishes because nothing references it anymore.
+```
+
+#### Example 2: Objects Kept Alive by References
+
+```js
+let globalObj;
+
+function keepAlive() {
+	let obj = { data: "important" };
+	globalObj = obj; // Now referenced globally
+}
+keepAlive();
+// Explanation: obj is NOT garbage collected because
+// globalObj maintains a reference to it.
+
+/* Key point to remember for GC:
+	1> Objects are garbage collected when they become unreachable
+	2> Closures, global variables, and forgotten references can prevent GC
+	3> Modern browsers use efficient GC algorithms that minimize performance impact
+	4> The best practice is to nullify references when you're done with large objects
+*/
+```
