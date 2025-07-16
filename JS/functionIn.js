@@ -44,28 +44,81 @@ i();
 // xyz();// this will give reference error bcz it created inside the local env or scope
 
 // 4 Parameters & Arguments in JS ?
-
+/*When declaring a function, you specify the parameters. 
+However, when calling a function, 
+you pass the arguments corresponding to the parameters.
+*/
 // taking as parameters..
 var jsLead = function (Parameters1, Parameters2) {
 	console.log(Parameters1, Parameters2);
 };
 //passing arguments
-jsLead(1, 2);
+jsLead("argument", 2);
 
 // 5 First-Class-Function && First-class-Citizens
 /*
-Passing another function into a function argument is know as F-C-F.
-or we can return it too.
+   In JavaScript, functions are treated like any other variable. They can be:
+	1> Assigned to variables
+	2> Passed as arguments
+	3> Returned them from other functions as a values
+   is know as F-C-F.
 */
-var FCF = function (param1) {
-	console.log(param1);
-	// return function xyz() {};
-};
-FCF(function () {});
 
-//return F-C-F
-var FCF = function () {
-	return function xyz() {};
+// 1. Assigning function to variable
+const greet = function (name) {
+	return `Hello, ${name}!`;
 };
-// return value of xyz is store in FCF
-console.log(FCF());
+console.log(greet("Alice")); // "Hello, Alice!"
+
+// 2. Passing function as argument
+function sayHi(greetingFn, name) {
+	console.log(greetingFn(name));
+}
+sayHi(greet, "Bob"); // "Hello, Bob!"
+
+// 3. Returning function from function
+function createGreeter() {
+	return function (name) {
+		return `Hey there, ${name}!`;
+	};
+}
+const casualGreet = createGreeter();
+console.log(casualGreet("Charlie")); // "Hey there, Charlie!"
+
+// 6. Callback Functions
+
+/*
+Concept: Functions that are passed as arguments to other functions to be executed later 
+(usually after some operation completes)
+*/
+// Simple callback example
+function processUserInput(callback) {
+	const name = prompt("Please enter your name");
+	callback(name); // callback is refer to greetUser function
+}
+
+function greetUser(name) {
+	console.log(`Welcome, ${name}!`);
+}
+
+processUserInput(greetUser); // Calls greetUser after getting input
+
+//more example of callback
+function cb(newCb) {
+	console.log("cb called"); //1 cb called
+	newCb();
+}
+
+cb(function newCb() {
+	console.log("newCb called");//2 newCb called
+});
+/*
+Callback function: JS is a synchronous and single-threaded language, which mean it perform
+one task at a time in a specify manner,
+But due to the callback we can do async task in JS which make JS Asynchronous....
+*/
+// Asynchronous callback example (common in JS)
+setTimeout(function () {
+	console.log("This runs after 2 seconds");
+}, 2000); //3 This runs after 2 seconds
+
