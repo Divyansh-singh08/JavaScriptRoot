@@ -110,7 +110,7 @@ function cb(newCb) {
 }
 
 cb(function newCb() {
-	console.log("newCb called");//2 newCb called
+	console.log("newCb called"); //2 newCb called
 });
 /*
 Callback function: JS is a synchronous and single-threaded language, which mean it perform
@@ -122,3 +122,38 @@ setTimeout(function () {
 	console.log("This runs after 2 seconds");
 }, 2000); //3 This runs after 2 seconds
 
+// 7 This is EVENT LOOP CHECK CODE :
+//setTimeOut is a part of callback Queue not micro-task Queue
+/*
+OUTPUT:
+Start
+END
+CBF netflix
+CBT SetTimeOut
+*/
+console.log("Start");
+setTimeout(function cbT() {
+	console.log("CBT SetTimeOut");
+}, 5000);
+
+fetch("https://api.netflix.com").then(function cbF() {
+	console.log("CBF netflix");
+});
+
+console.log("END");
+
+// 8 STARVATION
+function recursiveMicrotask() {
+	Promise.resolve().then(() => {
+		console.log("Microtask executed!");
+		recursiveMicrotask(); // Keeps adding new microtasks
+	});
+}
+
+// Start the infinite microtask loop
+// recursiveMicrotask();
+
+// This setTimeout will NEVER run due to starvation
+setTimeout(() => {
+	console.log("This will never log!");
+}, 0);

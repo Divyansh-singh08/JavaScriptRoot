@@ -785,6 +785,7 @@ keepAlive();
 ```
 
 ## Diving Deep into Function
+
 ```js
 /*  
     1 What is Function statements ?
@@ -795,7 +796,7 @@ keepAlive();
 function Home() {
 	console.log("Welcome to Home");
 }
-Home();// Welcome to Home
+Home(); // Welcome to Home
 
 // 3 > Function Expression: act like a value
 var Express = function () {
@@ -803,7 +804,9 @@ var Express = function () {
 };
 Express();
 ```
+
 ### Major difference between them
+
 ```js
 /* 
 The major difference between above is in Hosting..
@@ -814,7 +817,9 @@ it treat as variable
 which is undefine, bcz of not initialize at the same time, so u can't call undefine..
 */
 ```
+
 ## what is Anonymous Function ?
+
 ```js
 /* 
 Function without name is Anonymous function, it don't have there identity
@@ -831,7 +836,9 @@ var i = function xyz() {
 i();
 // xyz();// this will give reference error bcz it created inside the local env or scope
 ```
+
 ### 4 Parameters & Arguments in JS ?
+
 ```js
 /*When declaring a function, you specify the parameters. 
 However, when calling a function, 
@@ -844,7 +851,9 @@ var jsLead = function (Parameters1, Parameters2) {
 //passing arguments
 jsLead("argument", 2); // argument 2
 ```
+
 ### 5 First-Class-Function && First-class-Citizens
+
 ```js
 /*
    In JavaScript, functions are treated like any other variable. They can be:
@@ -876,6 +885,7 @@ console.log(casualGreet("Charlie")); // "Hey there, Charlie!"
 ```
 
 ### 6. Callback Functions
+
 ```js
 /*
 Concept: Functions that are passed as arguments to other functions to be executed later 
@@ -898,7 +908,7 @@ function cb(newCb) {
 	newCb();
 }
 cb(function newCb() {
-	console.log("newCb called");//2 newCb called
+	console.log("newCb called"); //2 newCb called
 });
 
 /*
@@ -913,6 +923,65 @@ setTimeout(function () {
 }, 2000); //3 This runs after 2 seconds
 ```
 
+## 7 EVENT LOOP in JS
 
+```js
+/*
+The Event Loop is a core concept in JavaScript that enables asynchronous behavior, 
+even though JS is single-threaded. It manages how code is executed, 
+especially when dealing with asynchronous operations like setTimeout, fetch, or Promise
 
+Event Loop Continuously checks if the Call Stack is empty, then moves tasks from 
+the Callback Queue or Microtask Queue into the Call Stack.
+*/
+
+/*
+Web APIs access by [global object] window into the callstack.
+Event loop checks if callStack is empty then check then Higher Priority Task[Micro-task]
+Queues if value is there then pass to callstack, if Micro-task Queues is empty then checks
+callback Queue[CBT] all this check via EVENT LOOP 
+*/
+
+// Example of EVENT LOOP CODE :
+//All setTimeOut is a part of callback Queue not micro-task Queue
+//All the callback function which come through promises will go inside Micro-task Queue
+/*
+----------Excepted OUTPUT-----------
+Start
+END
+CBF netflix
+CBT SetTimeOut
+*/
+console.log("Start");
+setTimeout(function cbT() {
+	console.log("CBT SetTimeOut");
+}, 5000);
+
+fetch("https://api.netflix.com").then(function cbF() {
+	console.log("CBF netflix");
+});
+
+console.log("END");
+```
+
+## 8 What is Starvation in JS ?
+```js
+/*
+Starvation happens when the Microtask Queue continuously generates new microtasks, preventing the Callback Queue (Macrotask Queue) from ever executing. This blocks tasks like setTimeout, setInterval, or UI rendering indefinitely.
+*/
+function recursiveMicrotask() {
+	Promise.resolve().then(() => {
+		console.log("Microtask executed!");
+		recursiveMicrotask(); // Keeps adding new microtasks
+	});
+}
+
+// Start the infinite microtask loop
+// recursiveMicrotask();
+
+// This setTimeout will NEVER run due to starvation
+setTimeout(() => {
+	console.log("This will never log!");
+}, 0);
+```
 
