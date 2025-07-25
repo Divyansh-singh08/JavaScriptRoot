@@ -1248,3 +1248,47 @@ for (let key in ans) {
 	console.log(key, ":", ans[key]);
 }
 ```
+## CALLBACK HELL ?
+```js
+// Callback Function:
+/* 
+2 Issue it create
+1> CallbackHell
+2> Inversion of control
+*/
+
+/*
+JS is a synchronous-single thread language it can run or just do one thing at a time
+
+Callbacks in JavaScript: Bridging Synchronous and Asynchronous Worlds
+
+In JS it's wait for Nothing and give immediately output
+so we use callback with asynchronous for waiting to response 
+so, this make JS to explore with use asynchronous world using callback Function
+*/
+
+console.log("Divyansh");
+
+setTimeout(function () {
+	console.log("JavaScript DM");
+}, 5000);
+
+console.log("Friday");
+
+// 1. What is CallBack Hell ?
+/*
+One callback inside another callback inside 
+another callback then it make a callbackHell, and code start increasing horizontal
+more compar to vertically called callbackHell.
+This type pfr code can't be maintainable & readable
+STRUCTURE IS ALSO KNOW AS PYRAMID OF DOOM
+*/
+
+// 2 Inversion of control:-
+/*
+Another problem while using callback, this problem mean 
+you loose the control of your code when we use callback.
+This above process know as Inversion of control
+*/
+```
+
