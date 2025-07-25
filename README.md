@@ -1217,3 +1217,34 @@ console.log(book, " this is global Book");
 }
 console.log(book, " updated global scope");
 ```
+## JavaScript const and Arrays/Objects Behavior
+```js
+// const never changes
+const details = "Yes I declare and initializer same time";
+// details = "all me"; // wrong can't reassign const primitives
+console.log(details, "const value"); // later u can not redeclaration of const
+
+// but in case of array and object it won't happen
+// bcz array is the object in JS
+const arr = [1, 2, 3, 4, 5];
+arr.push(12);// Allowed - modifying content not reassignment
+console.log(arr, "this is array in const declare");
+arr.shift(); // remove from beginning
+console.log(arr);
+
+// Adding Properties to Arrays
+// example
+let ans = [1, 2, 3, 4, 5];
+ans.mypro = "checkMe";// Adding custom property
+console.log(ans);
+ans.print = function () {
+	console.log("Hello Fnx");// Adding method
+};
+console.log(ans);
+
+// Iterating with for-in
+// for in loop
+for (let key in ans) {
+	console.log(key, ":", ans[key]);
+}
+```
