@@ -91,30 +91,30 @@ const cart = ["book", "iPhone", "Mac mini", "Mac 4 Pro"];
 
 //Two api is asynchronous
 //api- this api take cart item to it will return us  orderId
-// createOrder(cart); // RETURN orderId
-// proceedToPayment(orderID);
+createOrder(cart); // RETURN orderId
+proceedToPayment(orderID);
 
 //if we try with callback we pass this function to createOder function like below
-// function callback() {
-// 	proceedToPayment(orderID);
-// }
+function callback() {
+	proceedToPayment(orderID);
+}
 
 // here fist createOrder will create orderID then call to callback function
 // once the order is created
 // here inversion of control problem rise
-// createOrder(cart, function (orderID) {
-// 	proceedToPayment(orderID);
-// });
+createOrder(cart, function (orderID) {
+	proceedToPayment(orderID);
+});
 
 // Above issue resolve by promise
 // promiseCreate = {} assume as empty object
-// const promiseCreate = createOrder(cart);
+const promiseCreate = createOrder(cart);
 
 // {data : undefine} ==> pending state
 // {data : orderDetails} ==> Fulfilled state
-// promiseCreate.then(function (orderID) {
-// 	proceedToPayment(orderID);
-// });
+promiseCreate.then(function (orderID) {
+	proceedToPayment(orderID);
+});
 
 const JSON_API = "https://jsonplaceholder.typicode.com/todos/1";
 const userNew = fetch(JSON_API);
@@ -125,20 +125,21 @@ userNew.then((data) => {
 	console.log(data, "information");
 });
 
-//Promise chaining
-// createOrder(cart)
-// 	.then(function (orderID) {
-// 		return proceedToPayment(orderID);
-// 	})
-// 	.then(function (paymentInfo) {
-// 		return showOrderSummary(paymentInfo);
-// 	})
-// 	.then(function (paymentInfo) {
-// 		return updateWalletBalance(paymentInfo);
-// 	});
-
 // Promise-Chaining
 
+//Promise chaining Example 1
+createOrder(cart)
+	.then(function (orderID) {
+		return proceedToPayment(orderID);
+	})
+	.then(function (paymentInfo) {
+		return showOrderSummary(paymentInfo);
+	})
+	.then(function (paymentInfo) {
+		return updateWalletBalance(paymentInfo);
+	});
+
+// Promise-Chaining Example 2
 //producer maker
 function validateCartData() {
 	return false;
